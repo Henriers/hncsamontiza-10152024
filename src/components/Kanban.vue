@@ -38,7 +38,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="task in tasks" :key="task.id">
+        <tr v-for="task in taskStore.tasks" :key="task.id">
           <td>{{ task.id }}</td>
           <td>
             <span v-if="!task.isEditing">{{ task.name }}</span>
@@ -63,15 +63,16 @@
             <button @click="removeTask(task.id)" v-if="!task.isEditing">Delete</button>
           </td>
         </tr>
-      </tbody>
+    </tbody>
     </table>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
+import { useTaskStore } from '../stores/taskStore';
 
-const tasks = ref([]);
+const taskStore = useTaskStore();
 const taskName = ref('');
 const taskDescription = ref('');
 const taskStatus = ref('TO DO');
@@ -116,22 +117,19 @@ const addTask = () => {
     isEditing: false,
   };
 
-  tasks.value.push(newTask);
+  taskStore.addTask(newTask);
   resetForm();
-};
-
-const updateTask = (task) => {
 };
 
 const toggleEdit = (task) => {
   task.isEditing = !task.isEditing;
   if (!task.isEditing) {
-    updateTask(task);
+    taskStore.updateTask(task);
   }
 };
 
 const removeTask = (taskId) => {
-  tasks.value = tasks.value.filter(task => task.id !== taskId);
+  taskStore.removeTask(taskId);
 };
 
 const resetForm = () => {
@@ -142,6 +140,7 @@ const resetForm = () => {
   descriptionError.value = '';
 };
 </script>
+
 
 <style scoped>
 table {
