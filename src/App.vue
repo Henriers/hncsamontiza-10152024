@@ -9,26 +9,16 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
 import KanbanBoard from './components/Kanban.vue';
-
-export default defineComponent({
-  name: 'App',
-  components: {
-    KanbanBoard,
-  },
-});
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-  background-color: lavender
-  
+  background-color: lavender;
 }
 
 header {

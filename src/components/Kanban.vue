@@ -109,7 +109,7 @@ const isFormValid = computed(() => {
 
 const addTask = () => {
   const newTask = {
-    id: Date.now(), // Simple ID generation using timestamp
+    id: Date.now(),
     name: taskName.value,
     description: taskDescription.value || null,
     status: taskStatus.value,
@@ -121,7 +121,6 @@ const addTask = () => {
 };
 
 const updateTask = (task) => {
-  // Simply updates the task in place
 };
 
 const toggleEdit = (task) => {
